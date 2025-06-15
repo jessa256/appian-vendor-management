@@ -1,0 +1,754 @@
+a!localVariables(
+  local!selectedVendorId: null,
+  local!vendorData: a!refreshVariable(
+    value: cons!WB1_SUPABASE_GET(
+      tableName: "vendorInformation"
+    ),
+    refreshOnReferencedVarChange: true
+  ),
+  
+  a!headerContentLayout(
+    header: {
+      a!billboardLayout(
+        backgroundMedia: a!documentImage(
+          document: a!EXAMPLE_BILLBOARD_IMAGE()
+        ),
+        backgroundColor: "#f0f0f0",
+        marginBelow: "NONE",
+        overlay: a!barOverlay(
+          contents: {}
+        )
+      )
+    },
+    contents: {
+      {
+        /* Row 1: Vendors 1-4 */
+        a!columnsLayout(
+          columns: {
+            a!columnLayout(
+              contents: a!forEach(
+                items: {1},
+                expression: a!cardLayout(
+                  contents: {
+                    a!columnsLayout(
+                      columns: {
+                        a!columnLayout(
+                          contents: {
+                            a!imageField(
+                              images: a!webImage(
+                                source: index(local!vendorData.result.body, fv!item, {}).image_url,
+                                altText: "Profile picture for " & index(local!vendorData.result.body, fv!item, {}).contact_name
+                              ),
+                              showWhen: not(isnull(index(local!vendorData.result.body, fv!item, {}).image_url)),
+                              size: "MEDIUM",
+                              isThumbnail: true
+                            )
+                          },
+                          width: "NARROW"
+                        ),
+                        a!columnLayout(
+                          contents: {
+                            a!richTextDisplayField(
+                              label: "Business Name",
+                              labelPosition: "ABOVE",
+                              value: a!richTextItem(
+                                text: index(local!vendorData.result.body, fv!item, {}).vendor_name,
+                                style: "STRONG"
+                              )
+                            ),
+                            a!richTextDisplayField(
+                              label: "Contact Name",
+                              labelPosition: "ABOVE",
+                              value: index(local!vendorData.result.body, fv!item, {}).contact_name
+                            ),
+                            a!richTextDisplayField(
+                              label: "Section Type",
+                              labelPosition: "ABOVE",
+                              value: index(local!vendorData.result.body, fv!item, {}).vendor_type
+                            )
+                          },
+                          width: "WIDE"
+                        )
+                      }
+                    )
+                  },
+                  link: a!dynamicLink(
+                    value: index(local!vendorData.result.body, fv!item, {}).id,
+                    saveInto: {
+                      a!save(local!selectedVendorId, index(local!vendorData.result.body, fv!item, {}).id)
+                    }
+                  ),
+                  height: "MEDIUM",
+                  style: "NONE",
+                  marginBelow: "STANDARD"
+                )
+              )
+            ),
+            a!columnLayout(
+              contents: a!forEach(
+                items: {2},
+                expression: a!cardLayout(
+                  contents: {
+                    a!columnsLayout(
+                      columns: {
+                        a!columnLayout(
+                          contents: {
+                            a!imageField(
+                              images: a!webImage(
+                                source: index(local!vendorData.result.body, fv!item, {}).image_url,
+                                altText: "Profile picture for " & index(local!vendorData.result.body, fv!item, {}).contact_name
+                              ),
+                              showWhen: not(isnull(index(local!vendorData.result.body, fv!item, {}).image_url)),
+                              size: "MEDIUM",
+                              isThumbnail: true
+                            )
+                          },
+                          width: "NARROW"
+                        ),
+                        a!columnLayout(
+                          contents: {
+                            a!richTextDisplayField(
+                              label: "Business Name",
+                              labelPosition: "ABOVE",
+                              value: a!richTextItem(
+                                text: index(local!vendorData.result.body, fv!item, {}).vendor_name,
+                                style: "STRONG"
+                              )
+                            ),
+                            a!richTextDisplayField(
+                              label: "Contact Name",
+                              labelPosition: "ABOVE",
+                              value: index(local!vendorData.result.body, fv!item, {}).contact_name
+                            ),
+                            a!richTextDisplayField(
+                              label: "Section Type",
+                              labelPosition: "ABOVE",
+                              value: index(local!vendorData.result.body, fv!item, {}).vendor_type
+                            )
+                          },
+                          width: "WIDE"
+                        )
+                      }
+                    )
+                  },
+                  link: a!dynamicLink(
+                    value: index(local!vendorData.result.body, fv!item, {}).id,
+                    saveInto: {
+                      a!save(local!selectedVendorId, index(local!vendorData.result.body, fv!item, {}).id)
+                    }
+                  ),
+                  height: "MEDIUM",
+                  style: "NONE",
+                  marginBelow: "STANDARD"
+                )
+              )
+            ),
+            a!columnLayout(
+              contents: a!forEach(
+                items: {3},
+                expression: a!cardLayout(
+                  contents: {
+                    a!columnsLayout(
+                      columns: {
+                        a!columnLayout(
+                          contents: {
+                            a!imageField(
+                              images: a!webImage(
+                                source: index(local!vendorData.result.body, fv!item, {}).image_url,
+                                altText: "Profile picture for " & index(local!vendorData.result.body, fv!item, {}).contact_name
+                              ),
+                              showWhen: not(isnull(index(local!vendorData.result.body, fv!item, {}).image_url)),
+                              size: "MEDIUM",
+                              isThumbnail: true
+                            )
+                          },
+                          width: "NARROW"
+                        ),
+                        a!columnLayout(
+                          contents: {
+                            a!richTextDisplayField(
+                              label: "Business Name",
+                              labelPosition: "ABOVE",
+                              value: a!richTextItem(
+                                text: index(local!vendorData.result.body, fv!item, {}).vendor_name,
+                                style: "STRONG"
+                              )
+                            ),
+                            a!richTextDisplayField(
+                              label: "Contact Name",
+                              labelPosition: "ABOVE",
+                              value: index(local!vendorData.result.body, fv!item, {}).contact_name
+                            ),
+                            a!richTextDisplayField(
+                              label: "Section Type",
+                              labelPosition: "ABOVE",
+                              value: index(local!vendorData.result.body, fv!item, {}).vendor_type
+                            )
+                          },
+                          width: "WIDE"
+                        )
+                      }
+                    )
+                  },
+                  link: a!dynamicLink(
+                    value: index(local!vendorData.result.body, fv!item, {}).id,
+                    saveInto: {
+                      a!save(local!selectedVendorId, index(local!vendorData.result.body, fv!item, {}).id)
+                    }
+                  ),
+                  height: "MEDIUM",
+                  style: "NONE",
+                  marginBelow: "STANDARD"
+                )
+              )
+            ),
+            a!columnLayout(
+              contents: a!forEach(
+                items: {4},
+                expression: a!cardLayout(
+                  contents: {
+                    a!columnsLayout(
+                      columns: {
+                        a!columnLayout(
+                          contents: {
+                            a!imageField(
+                              images: a!webImage(
+                                source: index(local!vendorData.result.body, fv!item, {}).image_url,
+                                altText: "Profile picture for " & index(local!vendorData.result.body, fv!item, {}).contact_name
+                              ),
+                              showWhen: not(isnull(index(local!vendorData.result.body, fv!item, {}).image_url)),
+                              size: "MEDIUM",
+                              isThumbnail: true
+                            )
+                          },
+                          width: "NARROW"
+                        ),
+                        a!columnLayout(
+                          contents: {
+                            a!richTextDisplayField(
+                              label: "Business Name",
+                              labelPosition: "ABOVE",
+                              value: a!richTextItem(
+                                text: index(local!vendorData.result.body, fv!item, {}).vendor_name,
+                                style: "STRONG"
+                              )
+                            ),
+                            a!richTextDisplayField(
+                              label: "Contact Name",
+                              labelPosition: "ABOVE",
+                              value: index(local!vendorData.result.body, fv!item, {}).contact_name
+                            ),
+                            a!richTextDisplayField(
+                              label: "Section Type",
+                              labelPosition: "ABOVE",
+                              value: index(local!vendorData.result.body, fv!item, {}).vendor_type
+                            )
+                          },
+                          width: "WIDE"
+                        )
+                      }
+                    )
+                  },
+                  link: a!dynamicLink(
+                    value: index(local!vendorData.result.body, fv!item, {}).id,
+                    saveInto: {
+                      a!save(local!selectedVendorId, index(local!vendorData.result.body, fv!item, {}).id)
+                    }
+                  ),
+                  height: "MEDIUM",
+                  style: "NONE",
+                  marginBelow: "STANDARD"
+                )
+              )
+            )
+          }
+        ),
+        
+        /* Row 2: Vendors 5-8 */
+        a!columnsLayout(
+          columns: {
+            a!columnLayout(
+              contents: a!forEach(
+                items: {5},
+                expression: a!cardLayout(
+                  contents: {
+                    a!columnsLayout(
+                      columns: {
+                        a!columnLayout(
+                          contents: {
+                            a!imageField(
+                              images: a!webImage(
+                                source: index(local!vendorData.result.body, fv!item, {}).image_url,
+                                altText: "Profile picture for " & index(local!vendorData.result.body, fv!item, {}).contact_name
+                              ),
+                              showWhen: not(isnull(index(local!vendorData.result.body, fv!item, {}).image_url)),
+                              size: "MEDIUM",
+                              isThumbnail: true
+                            )
+                          },
+                          width: "NARROW"
+                        ),
+                        a!columnLayout(
+                          contents: {
+                            a!richTextDisplayField(
+                              label: "Business Name",
+                              labelPosition: "ABOVE",
+                              value: a!richTextItem(
+                                text: index(local!vendorData.result.body, fv!item, {}).vendor_name,
+                                style: "STRONG"
+                              )
+                            ),
+                            a!richTextDisplayField(
+                              label: "Contact Name",
+                              labelPosition: "ABOVE",
+                              value: index(local!vendorData.result.body, fv!item, {}).contact_name
+                            ),
+                            a!richTextDisplayField(
+                              label: "Section Type",
+                              labelPosition: "ABOVE",
+                              value: index(local!vendorData.result.body, fv!item, {}).vendor_type
+                            )
+                          },
+                          width: "WIDE"
+                        )
+                      }
+                    )
+                  },
+                  link: a!dynamicLink(
+                    value: index(local!vendorData.result.body, fv!item, {}).id,
+                    saveInto: {
+                      a!save(local!selectedVendorId, index(local!vendorData.result.body, fv!item, {}).id)
+                    }
+                  ),
+                  height: "MEDIUM",
+                  style: "NONE",
+                  marginBelow: "STANDARD"
+                )
+              )
+            ),
+            a!columnLayout(
+              contents: a!forEach(
+                items: {6},
+                expression: a!cardLayout(
+                  contents: {
+                    a!columnsLayout(
+                      columns: {
+                        a!columnLayout(
+                          contents: {
+                            a!imageField(
+                              images: a!webImage(
+                                source: index(local!vendorData.result.body, fv!item, {}).image_url,
+                                altText: "Profile picture for " & index(local!vendorData.result.body, fv!item, {}).contact_name
+                              ),
+                              showWhen: not(isnull(index(local!vendorData.result.body, fv!item, {}).image_url)),
+                              size: "MEDIUM",
+                              isThumbnail: true
+                            )
+                          },
+                          width: "NARROW"
+                        ),
+                        a!columnLayout(
+                          contents: {
+                            a!richTextDisplayField(
+                              label: "Business Name",
+                              labelPosition: "ABOVE",
+                              value: a!richTextItem(
+                                text: index(local!vendorData.result.body, fv!item, {}).vendor_name,
+                                style: "STRONG"
+                              )
+                            ),
+                            a!richTextDisplayField(
+                              label: "Contact Name",
+                              labelPosition: "ABOVE",
+                              value: index(local!vendorData.result.body, fv!item, {}).contact_name
+                            ),
+                            a!richTextDisplayField(
+                              label: "Section Type",
+                              labelPosition: "ABOVE",
+                              value: index(local!vendorData.result.body, fv!item, {}).vendor_type
+                            )
+                          },
+                          width: "WIDE"
+                        )
+                      }
+                    )
+                  },
+                  link: a!dynamicLink(
+                    value: index(local!vendorData.result.body, fv!item, {}).id,
+                    saveInto: {
+                      a!save(local!selectedVendorId, index(local!vendorData.result.body, fv!item, {}).id)
+                    }
+                  ),
+                  height: "MEDIUM",
+                  style: "NONE",
+                  marginBelow: "STANDARD"
+                )
+              )
+            ),
+            a!columnLayout(
+              contents: a!forEach(
+                items: {7},
+                expression: a!cardLayout(
+                  contents: {
+                    a!columnsLayout(
+                      columns: {
+                        a!columnLayout(
+                          contents: {
+                            a!imageField(
+                              images: a!webImage(
+                                source: index(local!vendorData.result.body, fv!item, {}).image_url,
+                                altText: "Profile picture for " & index(local!vendorData.result.body, fv!item, {}).contact_name
+                              ),
+                              showWhen: not(isnull(index(local!vendorData.result.body, fv!item, {}).image_url)),
+                              size: "MEDIUM",
+                              isThumbnail: true
+                            )
+                          },
+                          width: "NARROW"
+                        ),
+                        a!columnLayout(
+                          contents: {
+                            a!richTextDisplayField(
+                              label: "Business Name",
+                              labelPosition: "ABOVE",
+                              value: a!richTextItem(
+                                text: index(local!vendorData.result.body, fv!item, {}).vendor_name,
+                                style: "STRONG"
+                              )
+                            ),
+                            a!richTextDisplayField(
+                              label: "Contact Name",
+                              labelPosition: "ABOVE",
+                              value: index(local!vendorData.result.body, fv!item, {}).contact_name
+                            ),
+                            a!richTextDisplayField(
+                              label: "Section Type",
+                              labelPosition: "ABOVE",
+                              value: index(local!vendorData.result.body, fv!item, {}).vendor_type
+                            )
+                          },
+                          width: "WIDE"
+                        )
+                      }
+                    )
+                  },
+                  link: a!dynamicLink(
+                    value: index(local!vendorData.result.body, fv!item, {}).id,
+                    saveInto: {
+                      a!save(local!selectedVendorId, index(local!vendorData.result.body, fv!item, {}).id)
+                    }
+                  ),
+                  height: "MEDIUM",
+                  style: "NONE",
+                  marginBelow: "STANDARD"
+                )
+              )
+            ),
+            a!columnLayout(
+              contents: a!forEach(
+                items: {8},
+                expression: a!cardLayout(
+                  contents: {
+                    a!columnsLayout(
+                      columns: {
+                        a!columnLayout(
+                          contents: {
+                            a!imageField(
+                              images: a!webImage(
+                                source: index(local!vendorData.result.body, fv!item, {}).image_url,
+                                altText: "Profile picture for " & index(local!vendorData.result.body, fv!item, {}).contact_name
+                              ),
+                              showWhen: not(isnull(index(local!vendorData.result.body, fv!item, {}).image_url)),
+                              size: "MEDIUM",
+                              isThumbnail: true
+                            )
+                          },
+                          width: "NARROW"
+                        ),
+                        a!columnLayout(
+                          contents: {
+                            a!richTextDisplayField(
+                              label: "Business Name",
+                              labelPosition: "ABOVE",
+                              value: a!richTextItem(
+                                text: index(local!vendorData.result.body, fv!item, {}).vendor_name,
+                                style: "STRONG"
+                              )
+                            ),
+                            a!richTextDisplayField(
+                              label: "Contact Name",
+                              labelPosition: "ABOVE",
+                              value: index(local!vendorData.result.body, fv!item, {}).contact_name
+                            ),
+                            a!richTextDisplayField(
+                              label: "Section Type",
+                              labelPosition: "ABOVE",
+                              value: index(local!vendorData.result.body, fv!item, {}).vendor_type
+                            )
+                          },
+                          width: "WIDE"
+                        )
+                      }
+                    )
+                  },
+                  link: a!dynamicLink(
+                    value: index(local!vendorData.result.body, fv!item, {}).id,
+                    saveInto: {
+                      a!save(local!selectedVendorId, index(local!vendorData.result.body, fv!item, {}).id)
+                    }
+                  ),
+                  height: "MEDIUM",
+                  style: "NONE",
+                  marginBelow: "STANDARD"
+                )
+              )
+            )
+          }
+        ),
+        
+        /* Row 3: Vendors 9-12 */
+        a!columnsLayout(
+          columns: {
+            a!columnLayout(
+              contents: a!forEach(
+                items: {9},
+                expression: a!cardLayout(
+                  contents: {
+                    a!columnsLayout(
+                      columns: {
+                        a!columnLayout(
+                          contents: {
+                            a!imageField(
+                              images: a!webImage(
+                                source: index(local!vendorData.result.body, fv!item, {}).image_url,
+                                altText: "Profile picture for " & index(local!vendorData.result.body, fv!item, {}).contact_name
+                              ),
+                              showWhen: not(isnull(index(local!vendorData.result.body, fv!item, {}).image_url)),
+                              size: "MEDIUM",
+                              isThumbnail: true
+                            )
+                          },
+                          width: "NARROW"
+                        ),
+                        a!columnLayout(
+                          contents: {
+                            a!richTextDisplayField(
+                              label: "Business Name",
+                              labelPosition: "ABOVE",
+                              value: a!richTextItem(
+                                text: index(local!vendorData.result.body, fv!item, {}).vendor_name,
+                                style: "STRONG"
+                              )
+                            ),
+                            a!richTextDisplayField(
+                              label: "Contact Name",
+                              labelPosition: "ABOVE",
+                              value: index(local!vendorData.result.body, fv!item, {}).contact_name
+                            ),
+                            a!richTextDisplayField(
+                              label: "Section Type",
+                              labelPosition: "ABOVE",
+                              value: index(local!vendorData.result.body, fv!item, {}).vendor_type
+                            )
+                          },
+                          width: "WIDE"
+                        )
+                      }
+                    )
+                  },
+                  link: a!dynamicLink(
+                    value: index(local!vendorData.result.body, fv!item, {}).id,
+                    saveInto: {
+                      a!save(local!selectedVendorId, index(local!vendorData.result.body, fv!item, {}).id)
+                    }
+                  ),
+                  height: "MEDIUM",
+                  style: "NONE",
+                  marginBelow: "STANDARD"
+                )
+              )
+            ),
+            a!columnLayout(
+              contents: a!forEach(
+                items: {10},
+                expression: a!cardLayout(
+                  contents: {
+                    a!columnsLayout(
+                      columns: {
+                        a!columnLayout(
+                          contents: {
+                            a!imageField(
+                              images: a!webImage(
+                                source: index(local!vendorData.result.body, fv!item, {}).image_url,
+                                altText: "Profile picture for " & index(local!vendorData.result.body, fv!item, {}).contact_name
+                              ),
+                              showWhen: not(isnull(index(local!vendorData.result.body, fv!item, {}).image_url)),
+                              size: "MEDIUM",
+                              isThumbnail: true
+                            )
+                          },
+                          width: "NARROW"
+                        ),
+                        a!columnLayout(
+                          contents: {
+                            a!richTextDisplayField(
+                              label: "Business Name",
+                              labelPosition: "ABOVE",
+                              value: a!richTextItem(
+                                text: index(local!vendorData.result.body, fv!item, {}).vendor_name,
+                                style: "STRONG"
+                              )
+                            ),
+                            a!richTextDisplayField(
+                              label: "Contact Name",
+                              labelPosition: "ABOVE",
+                              value: index(local!vendorData.result.body, fv!item, {}).contact_name
+                            ),
+                            a!richTextDisplayField(
+                              label: "Section Type",
+                              labelPosition: "ABOVE",
+                              value: index(local!vendorData.result.body, fv!item, {}).vendor_type
+                            )
+                          },
+                          width: "WIDE"
+                        )
+                      }
+                    )
+                  },
+                  link: a!dynamicLink(
+                    value: index(local!vendorData.result.body, fv!item, {}).id,
+                    saveInto: {
+                      a!save(local!selectedVendorId, index(local!vendorData.result.body, fv!item, {}).id)
+                    }
+                  ),
+                  height: "MEDIUM",
+                  style: "NONE",
+                  marginBelow: "STANDARD"
+                )
+              )
+            ),
+            a!columnLayout(
+              contents: a!forEach(
+                items: {11},
+                expression: a!cardLayout(
+                  contents: {
+                    a!columnsLayout(
+                      columns: {
+                        a!columnLayout(
+                          contents: {
+                            a!imageField(
+                              images: a!webImage(
+                                source: index(local!vendorData.result.body, fv!item, {}).image_url,
+                                altText: "Profile picture for " & index(local!vendorData.result.body, fv!item, {}).contact_name
+                              ),
+                              showWhen: not(isnull(index(local!vendorData.result.body, fv!item, {}).image_url)),
+                              size: "MEDIUM",
+                              isThumbnail: true
+                            )
+                          },
+                          width: "NARROW"
+                        ),
+                        a!columnLayout(
+                          contents: {
+                            a!richTextDisplayField(
+                              label: "Business Name",
+                              labelPosition: "ABOVE",
+                              value: a!richTextItem(
+                                text: index(local!vendorData.result.body, fv!item, {}).vendor_name,
+                                style: "STRONG"
+                              )
+                            ),
+                            a!richTextDisplayField(
+                              label: "Contact Name",
+                              labelPosition: "ABOVE",
+                              value: index(local!vendorData.result.body, fv!item, {}).contact_name
+                            ),
+                            a!richTextDisplayField(
+                              label: "Section Type",
+                              labelPosition: "ABOVE",
+                              value: index(local!vendorData.result.body, fv!item, {}).vendor_type
+                            )
+                          },
+                          width: "WIDE"
+                        )
+                      }
+                    )
+                  },
+                  link: a!dynamicLink(
+                    value: index(local!vendorData.result.body, fv!item, {}).id,
+                    saveInto: {
+                      a!save(local!selectedVendorId, index(local!vendorData.result.body, fv!item, {}).id)
+                    }
+                  ),
+                  height: "MEDIUM",
+                  style: "NONE",
+                  marginBelow: "STANDARD"
+                )
+              )
+            ),
+            a!columnLayout(
+              contents: a!forEach(
+                items: {12},
+                expression: a!cardLayout(
+                  contents: {
+                    a!columnsLayout(
+                      columns: {
+                        a!columnLayout(
+                          contents: {
+                            a!imageField(
+                              images: a!webImage(
+                                source: index(local!vendorData.result.body, fv!item, {}).image_url,
+                                altText: "Profile picture for " & index(local!vendorData.result.body, fv!item, {}).contact_name
+                              ),
+                              showWhen: not(isnull(index(local!vendorData.result.body, fv!item, {}).image_url)),
+                              size: "MEDIUM",
+                              isThumbnail: true
+                            )
+                          },
+                          width: "NARROW"
+                        ),
+                        a!columnLayout(
+                          contents: {
+                            a!richTextDisplayField(
+                              label: "Business Name",
+                              labelPosition: "ABOVE",
+                              value: a!richTextItem(
+                                text: index(local!vendorData.result.body, fv!item, {}).vendor_name,
+                                style: "STRONG"
+                              )
+                            ),
+                            a!richTextDisplayField(
+                              label: "Contact Name",
+                              labelPosition: "ABOVE",
+                              value: index(local!vendorData.result.body, fv!item, {}).contact_name
+                            ),
+                            a!richTextDisplayField(
+                              label: "Section Type",
+                              labelPosition: "ABOVE",
+                              value: index(local!vendorData.result.body, fv!item, {}).vendor_type
+                            )
+                          },
+                          width: "WIDE"
+                        )
+                      }
+                    )
+                  },
+                  link: a!dynamicLink(
+                    value: index(local!vendorData.result.body, fv!item, {}).id,
+                    saveInto: {
+                      a!save(local!selectedVendorId, index(local!vendorData.result.body, fv!item, {}).id)
+                    }
+                  ),
+                  height: "MEDIUM",
+                  style: "NONE",
+                  marginBelow: "STANDARD"
+                )
+              )
+            )
+          }
+        )
+      }
+    },
+    backgroundColor: "TRANSPARENT"
+  )
+)
